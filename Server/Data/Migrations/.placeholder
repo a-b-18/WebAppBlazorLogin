@@ -1,0 +1,2 @@
+﻿# ef migrations add Latest -o ./Data/Migrations
+# ef database update

@@ -1,0 +1,22 @@
+﻿@page "/register"
+@using System.Security.Cryptography
+@using System.Text
+@using WebAppBlazorLogin.Shared
+
+<h3>Register</h3>
+
+
+<input @bind-value="@inputUserName" type="text" placeholder="User Name"/>
+<input @bind-value="@inputPassword" type="password" placeholder="Password"/>
+<button @onclick="buttonRegister">Register!</button>
+
+@code {
+    private string inputUserName;
+    private string inputPassword;
+
+    private async void buttonRegister()
+    {
+        var newUser = UserDetailDto.FromLogin(inputUserName, inputPassword);
+        var response = await new HttpClient().PostAsJsonAsync<UserDetailDto>("https://localhost:7232/Account/Register", newUser);
+    }
+}

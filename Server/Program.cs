@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using WebAppBlazorLogin.Server.Data;
 
 namespace Company.WebApplication1
 {
@@ -9,6 +12,8 @@ namespace Company.WebApplication1
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<DataContext>(options =>
+                options.UseSqlite("Data Source=.\\Data\\SQLITEDB1.sqlite;"));
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
